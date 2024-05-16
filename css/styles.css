@@ -85,44 +85,38 @@ p {
   margin-left: 93px; /*ok*/
   margin-top: 32px;
   margin-bottom: 32px;
-
 }
 
 .header-list-item:not(:last-child) {
   margin-right: 50px;
 }
 
-.header-list-item{
-  position: relative;}  
+.header-list-item {
+  position: relative;
+}
 
 .list-item {
   /* у строчных элементов не работает вертикальная геометрияЮ поэтому дисплей блок для ссылок делаем 
     тогда ссылка раздвигает ли и можно паддинг добавить , будет больше площадь куда нажать*/
   display: block;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   /* это необязательно */
   color: rgb(33, 33, 33);
   text-decoration: none;
 }
 
-.list-item::after{
+.list-item.current::after {
   display: block;
   position: absolute;
-  content: "";
+  content: '';
   width: 100%;
   height: 4px;
   background-color: var(--accent-color);
   border-radius: 4px;
+  left: 0;
   bottom: 0;
-  opacity: 0;
-  }
-
-  .list-item:hover::after{
-
-      opacity: 1;
-  }
-
+}
 
 .header-list .list-item.current {
   color: var(--accent-color);
@@ -210,6 +204,7 @@ cursor: pointer;
 
 .contacts-list-item {
   display: flex;
+  justify-content: baseline;
   text-decoration: none;
   color: rgba(117, 117, 117, 1);
 }
@@ -258,13 +253,12 @@ cursor: pointer;
 .overlay {
   max-width: 1600px;
   min-height: 600px;
-  outline: 1px solid purple;
   margin-left: auto;
   margin-right: auto;
-  background-color: #c4c4c4;
+  background-color: rgba(196, 196, 196, 1);
+  background-image: url(../images/overlay.jpg);
   background-image: rgba(47, 48, 58, 0.4);
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0, 5), rgba(0, 0, 0, 0, 5));
-  background-image: url(../images/overlay.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -313,16 +307,39 @@ button:focus {
   border-radius: 4px;
 } */
 
+/* ----------------------Modal----------------------------*/
 
-.backdrop{
-  position:fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: orange;
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none; /*при таком классе на єлемент не действуют никакие собітия */
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9); /*стилі для схованої модалки */
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1); /*властивість була перебита тому через пробіл записуємо */
+  min-width: 528px;
+  min-height: 581px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 1);
+  /* transform: scale(1); */
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* ----------------------Features----------------------------*/
 .icon-vector-ul {
@@ -444,42 +461,37 @@ background-color: orange;
 .about-list-item {
   flex-basis: calc(100% / 3 - 30px);
   margin-left: 30px;
-    position: relative;
+  position: relative;
 }
 
-.about-list-item::before {
+.about-list-item::after {
   display: inline-block;
-  position: absolute;
   content: '';
+  position: absolute;
   width: 100%;
   height: 70px;
   background-color: rgba(47, 48, 58, 0.8);
+  left: 0;
   bottom: 0;
-  opacity: 0;
 }
-.about-list-item:hover::before {
-  opacity: 1;
+.label-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
-
-.label{
-
-position: absolute;
-display: flex;
-font-size: 14px;
-font-weight: 700;
-line-height: 1.17;
-text-transform: uppercase;
-text-align: center;
-color: rgba(255, 255, 255, 1);
-
-bottom: 27px;
-opacity: 0;
+.label {
+  position: absolute;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.17;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  bottom: 27px;
+  z-index: 1;
+  /* transform: translate(-50%,-50%); */
 }
-
-.about-list-item:hover .label{
-opacity: 1;
-}
-
 
 /* Варіант: .about-list-item:not(:last-child) {
     margin-right: 30px;
@@ -500,15 +512,14 @@ opacity: 1;
   margin-top: -30px;
 }
 
-.team-list > .team-item {
+.team-item {
   margin: 0; /*reset */
   padding: 0;
   flex-basis: calc(100% / 4 - 30px);
   margin-left: 30px;
   margin-top: 30px;
   background-color: #ffffff;
-  /* border-bottom: 1px solid rgba(238, 238, 238, 1);
-  border-bottom-radius: 0px, 0px, 4px, 4px; */
+  border-radius: 0px 0px 4px 4px;
   box-shadow: 0px 2px 1px 0px #00000033;
   box-shadow: 0px 1px 1px 0px #00000024;
   box-shadow: 0px 1px 3px 0px #0000001f;
@@ -798,7 +809,7 @@ opacity: 1;
   margin-top: -30px;
 }
 
-.card-set > .card-set-item {
+.card-set-item {
   margin: 0; /*reset */
   padding: 0;
   flex-basis: calc(100% / 3 - 30px);
@@ -807,9 +818,23 @@ opacity: 1;
   margin-top: 30px;
   border-bottom: 1px solid rgba(238, 238, 238, 1);
 }
+.card {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
 
 .card-thumb {
   position: relative;
+  overflow: hidden;
+}
+
+.card-thumb:hover {
+  box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
 }
 
 .card-thumb::before {
@@ -818,21 +843,28 @@ opacity: 1;
   content: '';
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   background-color: rgba(33, 150, 243, 0.9);
   opacity: 0;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-thumb:hover::before {
+.card:hover .card-thumb::before {
   /*При ховере сюда возьми его бивор и примени стили */
   opacity: 1;
-  cursor: pointer;
+}
+
+.card:hover .card-thumb::before {
+  transform: translateY(0);
 }
 
 .text-description {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%) translateY(100%);
   color: #ffffff;
   /* outline: 2px solid sandybrown; */
   opacity: 0;
@@ -840,17 +872,13 @@ opacity: 1;
   width: 322px;
   line-height: 1.56;
   font-weight: 400;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-thumb:hover .text-description {
+.card:hover .text-description {
   opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
 }
-/* .card-set-item:hover .card-thumb{
-    /* position: absolute; */
-
-/* top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);} */
 
 .text-box {
   padding-top: 20px;
