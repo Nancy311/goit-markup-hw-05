@@ -43,7 +43,7 @@
           <li class="contacts-list-item">
             <a href="info@devstudio.com" class="mail-tel">
               <svg class="icon-envelope" width="16" height="12">
-                <use href="./images/icons.svg#envelope"/>
+                <use href="./images/icons.svg#envelope" />
               </svg>
               info@devstudio.com</a
             >
@@ -51,7 +51,7 @@
           <li class="contacts-list-item">
             <a href="tel:+380961111111" class="mail-tel">
               <svg class="icon-smartphone" width="10" height="16">
-                <use href="./images/icons.svg#smartphone"/>
+                <use href="./images/icons.svg#smartphone" />
               </svg>
 
               +38 (096) 111-11-11
@@ -69,7 +69,11 @@
           <div class="backdrop is-hidden" data-modal>
             <div class="modal">
               <!-- <p>teeeext</p> -->
-              <button data-modal-close>Close</button>
+              <button type="button" class="modal-button" data-modal-close>
+                <svg class="icon-modal" width="11" height="11">
+                  <use href="./images/icons.svg#Vector" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -126,31 +130,38 @@
         </div>
       </section>
 
-    
       <section class="section about">
         <div class="container">
           <h2 class="about-title">Чим ми займаємось</h2>
           <ul class="about-list">
+            
             <li class="about-list-item">
               <a href="https://www.pexels.com/photo/animals-sweet-cat-kitty-57416/">
                 <img src="./images/photo1.jpg" alt="Печать на клавиатуре" width="370" />
               </a>
-    <div class="label-item">
-              <label class="label">Десктопні додатки</label></div>
+              <div class="label-item">
+                <label class="label">Десктопні додатки</label>
+              </div>
             </li>
+
             <li class="about-list-item">
               <a href="https://www.pexels.com/photo/animals-sweet-cat-kitty-57416/">
                 <img src="./images/photo2.jpg" alt="Телефон в руках" width="370" />
               </a>
               <div class="label-item">
-              <label class="label">Мобільні додатки</label></div>
+                <label class="label">Мобільні додатки</label>
+              </div>
             </li>
+
             <li class="about-list-item">
               <a href="https://www.pexels.com/photo/animals-sweet-cat-kitty-57416/">
                 <img src="./images/photo3.jpg" alt="Таблица оттенков в руках" width="370" />
-                              </a>
-                               <div class="label-item"><label class="label">Дизайнерські рішення</label></div>
+              </a>
+              <div class="label-item">
+                <label class="label">Дизайнерські рішення</label>
+              </div>
             </li>
+
           </ul>
         </div>
       </section>
@@ -215,7 +226,7 @@
                   <h3>Ольга Репина</h3>
                   <p lang="en">Frontend Developer</p>
                 </div>
-                 <div class="links">
+                <div class="links">
                   <ul class="social-list">
                     <li class="social-list-item">
                       <a href="" class="icon-link">
@@ -262,7 +273,7 @@
                   <h3>Николай Тарасов</h3>
                   <p lang="en">Marketing</p>
                 </div>
-                 <div class="links">
+                <div class="links">
                   <ul class="social-list">
                     <li class="social-list-item">
                       <a href="" class="icon-link">
@@ -309,7 +320,7 @@
                   <h3>Михаил Ермаков</h3>
                   <p lang="en">UI Designer</p>
                 </div>
-               <div class="links">
+                <div class="links">
                   <ul class="social-list">
                     <li class="social-list-item">
                       <a href="" class="icon-link">
@@ -357,7 +368,7 @@
             <li class="clients-item">
               <a href="" class="clients-link">
                 <svg class="icon-clients" width="41" height="47">
-                  <use href="./images/icons.svg#group1"/>
+                  <use href="./images/icons.svg#group1" />
                 </svg>
               </a>
             </li>
@@ -372,14 +383,14 @@
             <li class="clients-item">
               <a href="" class="clients-link">
                 <svg class="icon-clients" width="44" height="41">
-                  <use href="./images/icons.svg#group3"/>
+                  <use href="./images/icons.svg#group3" />
                 </svg>
               </a>
             </li>
             <li class="clients-item">
               <a href="" class="clients-link">
                 <svg class="icon-clients" width="85" height="41">
-                  <use href="./images/icons.svg#group4"/>
+                  <use href="./images/icons.svg#group4" />
                 </svg>
               </a>
             </li>
@@ -393,7 +404,7 @@
             <li class="clients-item">
               <a href="" class="clients-link">
                 <svg class="icon-clients" width="94" height="44">
-                  <use href="./images/icons.svg#group6"/>
+                  <use href="./images/icons.svg#group6" />
                 </svg>
               </a>
             </li>
@@ -450,7 +461,7 @@
             <li class="footer-list-item">
               <a href="" class="footer-icon-link">
                 <svg class="footer-icon" width="20" height="20">
-                  <use href="./images/icons.svg#linkedin"/>
+                  <use href="./images/icons.svg#linkedin" />
                 </svg>
               </a>
             </li>
@@ -458,6 +469,6 @@
         </div>
       </div>
     </footer>
-     <script src="./js/modal.js"></script>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

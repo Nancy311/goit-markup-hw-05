@@ -104,6 +104,7 @@ p {
   /* это необязательно */
   color: rgb(33, 33, 33);
   text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .list-item.current::after {
@@ -122,8 +123,7 @@ p {
   color: var(--accent-color);
 }
 
-.list-item:hover,
-.header-list .list-item:focus {
+.list-item:hover, .list-item:focus {
   color: var(--accent-color);
 }
 
@@ -204,7 +204,8 @@ cursor: pointer;
 
 .contacts-list-item {
   display: flex;
-  justify-content: baseline;
+
+  /* justify-content: baseline; */
   text-decoration: none;
   color: rgba(117, 117, 117, 1);
 }
@@ -212,12 +213,16 @@ cursor: pointer;
 .mail-tel {
   color: rgba(117, 117, 117, 1);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-smartphone,
 .icon-envelope {
   fill: currentColor;
   margin-right: 10px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mail-tel:hover,
@@ -317,11 +322,13 @@ button:focus {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   opacity: 1;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), 
+  visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none; /*при таком классе на єлемент не действуют никакие собітия */
 }
 
@@ -335,10 +342,40 @@ button:focus {
   transform: translate(-50%, -50%) scale(1); /*властивість була перебита тому через пробіл записуємо */
   min-width: 528px;
   min-height: 581px;
-  padding: 15px;
+  /* padding-top: 8px;
+   padding-right: 8px;
+  padding-left: 490px; */
   background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
   /* transform: scale(1); */
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.no-scroll{
+  overflow: hidden;
+}
+
+.modal-button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  display: inline-block;
+padding: 0;
+     width: 30px;
+  height: 30px;
+  background-color:rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  
+}
+
+.icon-modal {
+  fill: rgba(0, 0, 0, 1);
+
 }
 
 /* ----------------------Features----------------------------*/
@@ -370,7 +407,6 @@ button:focus {
   flex-wrap: wrap;
   margin-left: -30px;
   justify-content: center;
-  align-items: center;
   outline: 1px solid #2f303a;
 }
 
@@ -461,36 +497,34 @@ button:focus {
 .about-list-item {
   flex-basis: calc(100% / 3 - 30px);
   margin-left: 30px;
-  position: relative;
+  
 }
 
-.about-list-item::after {
-  display: inline-block;
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 70px;
-  background-color: rgba(47, 48, 58, 0.8);
-  left: 0;
-  bottom: 0;
-}
 .label-item {
-  position: relative;
-  display: flex;
-  justify-content: center;
+ position: relative;
+
 }
+
+
 .label {
   position: absolute;
+  bottom: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.17;
   text-transform: uppercase;
   text-align: center;
   color: rgba(255, 255, 255, 1);
-  bottom: 27px;
-  z-index: 1;
-  /* transform: translate(-50%,-50%); */
+  background-color: rgba(47, 48, 58, 0.8);
+  
+  white-space: nowrap; /* забороняємо пренос на нову строку*/
+   overflow: hidden; /*ховаємо все зайве але треба падінги поставити */
+  text-overflow: ellipsis;
 }
 
 /* Варіант: .about-list-item:not(:last-child) {
@@ -585,10 +619,12 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon {
   fill: currentColor;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-link:hover,
@@ -626,10 +662,12 @@ button:focus {
   border: 1px solid var(--icon-color);
   border-radius: 4px;
   color: var(--icon-color);
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-clients {
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -749,6 +787,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-icon {
@@ -774,15 +813,16 @@ button:focus {
 .button-list-item {
   height: 38px;
   border-radius: 4px;
-  background: var(--accent-color);
   font-family: inherit;
   font-size: 16px;
   line-height: 1.63;
   text-align: center;
   letter-spacing: 0.03em;
   background-color: #f5f4fa;
+  cursor: pointer;
   border: 1px solid rgba(238, 238, 238, 1);
   border-radius: 4px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1) ;
 }
 
 .button-list-item:hover,
@@ -792,11 +832,6 @@ button:focus {
 }
 
 /* Portfolio List Section */
-
-.portfolio {
-  border: 1px solid rgba(238, 238, 238, 1);
-  /* margin-left: -30px; */
-}
 
 .card-set {
   margin: 0; /*reset */
@@ -816,25 +851,27 @@ button:focus {
   /*тоже самое что и ширина , хотим 3 колонки чтоб всега было */
   margin-left: 30px;
   margin-top: 30px;
-  border-bottom: 1px solid rgba(238, 238, 238, 1);
+
 }
 .card {
+  display: block;
+  text-decoration: none;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
   cursor: pointer;
+  border: 1px solid rgba(238, 238, 238, 1)
 }
-
-.card-thumb {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-thumb:hover {
+.card:hover, .card:focus {
   box-shadow: 1px 4px 6px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+}
+
+ .card-thumb {
+  position: relative;
+  overflow: hidden; /*or auto*/
 }
 
 .card-thumb::before {
@@ -852,32 +889,39 @@ button:focus {
 }
 
 .card:hover .card-thumb::before {
-  /*При ховере сюда возьми его бивор и примени стили */
+  /*При ховере сюда возьми его бивор и примени стили*/ 
   opacity: 1;
 }
 
 .card:hover .card-thumb::before {
   transform: translateY(0);
-}
+} 
 
 .text-description {
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%) translateY(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
+ bottom: 0;
+  transform: translateY(100%);
   color: #ffffff;
-  /* outline: 2px solid sandybrown; */
-  opacity: 0;
+  background-color: rgba(33, 150, 243, 0.9);
+ 
+  opacity: 1;
   font-size: 18px;
-  width: 322px;
+  width: 100%;
+  height: 100%;
   line-height: 1.56;
   font-weight: 400;
+  text-align: left;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover .text-description {
   opacity: 1;
-  transform: translate(-50%, -50%) translateY(0);
+  transform: translateY(0);
 }
 
 .text-box {
@@ -890,11 +934,13 @@ button:focus {
 .portfolio-title {
   margin-block-end: 0;
   margin-block-start: 0;
-  font-size: 18px;
+   font-size: 18px;
   font-weight: 700;
   line-height: 2;
   letter-spacing: 0.06em;
   text-align: left;
+ color: rgba(33, 33, 33, 1);
+
 }
 
 .portfolio-text {
@@ -905,5 +951,6 @@ button:focus {
   font-weight: 400;
   line-height: 1.88;
   text-align: left;
+
   color: rgba(117, 117, 117, 1);
 }
