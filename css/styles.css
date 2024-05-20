@@ -324,6 +324,7 @@ button:focus {
   opacity: 1;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), 
   visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
 .backdrop.is-hidden {
@@ -888,14 +889,11 @@ padding: 0;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card:hover .card-thumb::before {
+.card:hover .card-thumb::before, .card:focus .card-thumb::before {
   /*При ховере сюда возьми его бивор и примени стили*/ 
   opacity: 1;
+    transform: translateY(0);
 }
-
-.card:hover .card-thumb::before {
-  transform: translateY(0);
-} 
 
 .text-description {
   position: absolute;
@@ -919,7 +917,7 @@ padding: 0;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card:hover .text-description {
+.card:hover .text-description, .card:focus .text-description  {
   opacity: 1;
   transform: translateY(0);
 }
